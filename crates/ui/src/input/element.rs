@@ -904,6 +904,7 @@ impl TextElement {
                     background_color: None,
                     underline: None,
                     strikethrough: None,
+                    letter_spacing: None,
                 }],
                 None,
             );
@@ -958,6 +959,7 @@ impl TextElement {
                 background_color: None,
                 underline: None,
                 strikethrough: None,
+                letter_spacing: None,
             }],
             None,
         );
@@ -973,6 +975,7 @@ impl TextElement {
                 background_color: None,
                 underline: None,
                 strikethrough: None,
+                letter_spacing: None,
             }],
             None,
         );
@@ -1030,6 +1033,7 @@ impl TextElement {
                 background_color: None,
                 underline: None,
                 strikethrough: None,
+                letter_spacing: None,
             };
             Some(
                 window
@@ -1053,6 +1057,7 @@ impl TextElement {
                     background_color: None,
                     underline: None,
                     strikethrough: None,
+                    letter_spacing: None,
                 };
                 // Use space for empty lines so they take up height
                 let shaped_text = if text.is_empty() { " ".into() } else { text };
@@ -1692,6 +1697,7 @@ impl Element for TextElement {
             background_color: None,
             underline: None,
             strikethrough: None,
+            letter_spacing: None,
         };
         let marked_run = TextRun {
             len: 0,
@@ -1704,6 +1710,7 @@ impl Element for TextElement {
                 wavy: false,
             }),
             strikethrough: None,
+            letter_spacing: None,
         };
 
         let runs = if let (false, Some(highlight_styles)) = (is_empty, highlight_styles) {
@@ -1776,6 +1783,7 @@ impl Element for TextElement {
                         background_color: None,
                         underline: None,
                         strikethrough: None,
+                        letter_spacing: None,
                     }],
                     wrap_width,
                 )
@@ -1878,6 +1886,7 @@ impl Element for TextElement {
                 background_color: None,
                 underline: None,
                 strikethrough: None,
+                letter_spacing: None,
             }];
             let current_line_runs = vec![TextRun {
                 len: line_number_len,
@@ -1886,6 +1895,7 @@ impl Element for TextElement {
                 background_color: None,
                 underline: None,
                 strikethrough: None,
+                letter_spacing: None,
             }];
 
             // build line numbers
@@ -2545,6 +2555,7 @@ mod tests {
             background_color: None,
             underline: None,
             strikethrough: None,
+            letter_spacing: None,
         };
 
         // use hello this-is-test
@@ -2658,6 +2669,7 @@ mod tests {
             background_color: None,
             underline: None,
             strikethrough: None,
+            letter_spacing: None,
         };
 
         let runs = vec![
@@ -2696,6 +2708,7 @@ mod tests {
             background_color: None,
             underline: None,
             strikethrough: None,
+            letter_spacing: None,
         };
 
         let runs = vec![
