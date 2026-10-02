@@ -107,6 +107,10 @@ impl<T: 'static, E: 'static + Render> Element for ResizeHandle<T, E> {
 
             let bg_color = if state.is_active() {
                 cx.theme().drag_border
+            } else if cx.theme().dock_gap > px(0.) {
+                // The gutter already separates the panels; a resting rule down
+                // the middle of it cuts across their rounded corners.
+                cx.theme().transparent
             } else {
                 cx.theme().border
             };
