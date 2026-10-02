@@ -1211,8 +1211,20 @@ impl Render for TabPanel {
             .tab_group()
             .size_full()
             .overflow_hidden()
-            .bg(cx.theme().tokens.background)
-            .child(self.render_title_bar(&state, window, cx))
-            .child(self.render_active_panel(&state, window, cx))
+            // Half the gutter per side, so two adjacent panels together make a
+            // full `dock_gap` and the dock's outer edge gets half of one.
+            .p(cx.theme().dock_gap * 0.5)
+            .child(
+                v_flex()
+                    .size_full()
+                    .overflow_hidden()
+                    .rounded(cx.theme().dock_radius)
+                    .when(cx.theme().dock_border, |this| {
+                        this.border_1().border_color(cx.theme().border)
+                    })
+                    .bg(cx.theme().tokens.background)
+                    .child(self.render_title_bar(&state, window, cx))
+                    .child(self.render_active_panel(&state, window, cx)),
+            )
     }
 }
