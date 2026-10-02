@@ -130,6 +130,12 @@ pub struct Theme {
     pub tile_shadow: bool,
     /// The border radius of the tile panel, default is 0px.
     pub tile_radius: Pixels,
+    /// The gutter between dock panels, default is 0px.
+    pub dock_gap: Pixels,
+    /// The border radius of a dock panel, default is 0px.
+    pub dock_radius: Pixels,
+    /// Whether a dock panel draws a border, default is false.
+    pub dock_border: bool,
     /// The list settings.
     pub list: ListSettings,
     /// The sheet settings.
@@ -499,6 +505,9 @@ impl From<&ThemeColor> for Theme {
             tile_grid_size: px(8.),
             tile_shadow: true,
             tile_radius: px(0.),
+            dock_gap: px(0.),
+            dock_radius: px(0.),
+            dock_border: false,
             list: ListSettings::default(),
             colors: *colors,
             tokens: ThemeTokens::from(colors),

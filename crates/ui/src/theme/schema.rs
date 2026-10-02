@@ -69,6 +69,16 @@ pub struct ThemeConfig {
     #[serde(rename = "shadow")]
     pub shadow: Option<bool>,
 
+    /// The gutter between dock panels, default is 0.
+    #[serde(rename = "dock.gap")]
+    pub dock_gap: Option<usize>,
+    /// The border radius of a dock panel, default is 0.
+    #[serde(rename = "dock.radius")]
+    pub dock_radius: Option<usize>,
+    /// Whether a dock panel draws a border, default is false.
+    #[serde(rename = "dock.border")]
+    pub dock_border: Option<bool>,
+
     /// The colors of the theme.
     pub colors: ThemeConfigColors,
     /// The highlight theme, this part is combilbility with `style` section in Zed theme.
@@ -1098,6 +1108,15 @@ impl Theme {
         }
         if let Some(shadow) = config.shadow {
             self.shadow = shadow;
+        }
+        if let Some(dock_gap) = config.dock_gap {
+            self.dock_gap = px(dock_gap as f32);
+        }
+        if let Some(dock_radius) = config.dock_radius {
+            self.dock_radius = px(dock_radius as f32);
+        }
+        if let Some(dock_border) = config.dock_border {
+            self.dock_border = dock_border;
         }
 
         self.tokens = self.colors.apply_config(&config, &default_colors);
