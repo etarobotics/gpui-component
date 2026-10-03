@@ -21,7 +21,7 @@ pub use state::*;
 pub use tab_panel::*;
 pub use tiles::*;
 
-use crate::ElementExt;
+use crate::{ActiveTheme as _, ElementExt};
 
 pub(crate) fn init(cx: &mut App) {
     PanelRegistry::init(cx);
@@ -1153,6 +1153,10 @@ impl Render for DockArea {
             .relative()
             .size_full()
             .overflow_hidden()
+            // Each panel insets itself by half a gutter, so the dock's own edge
+            // needs the other half for a panel to sit as far from the window as
+            // it does from its neighbour.
+            .p(cx.theme().dock_gap * 0.5)
             .on_prepaint(move |bounds, _, cx| view.update(cx, |r, _| r.bounds = bounds))
             .map(|this| {
                 if let Some(zoom_view) = self.zoom_view.clone() {
